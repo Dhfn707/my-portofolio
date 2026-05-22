@@ -474,7 +474,7 @@ body {
   width: 90%;
   max-width: 650px;
   margin: 0 auto;
-  background: url("/Assetss/back.png");
+  background: url("Assetss/back.png");
   background-size: cover;
   background-position: center;
   padding: 60px 40px;
