@@ -474,7 +474,7 @@ body {
   width: 90%;
   max-width: 650px;
   margin: 0 auto;
-  background: url("/Assetss/back.png");
+  background: url("Assetss/back.png");
   background-size: cover;
   background-position: center;
   padding: 60px 40px;
@@ -552,4 +552,259 @@ footer {
 footer p {
   font-size: 18px;
   font-weight: 500;
+}
+
+/* MODAL STYLES */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: var(--background);
+  padding: 40px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 900px;
+  height: 90vh;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.pdf-modal {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdf-modal iframe,
+.pdf-modal object {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.pdf-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  color: var(--primary);
+}
+
+.pdf-fallback p {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+  color: var(--primary);
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: var(--accent);
+}
+
+/* CV Content Styling */
+.cv-container {
+  color: var(--primary);
+  text-align: left;
+}
+
+.cv-header {
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.cv-header h1 {
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.cv-section {
+  margin-bottom: 30px;
+}
+
+.cv-section h2 {
+  font-size: 22px;
+  border-left: 5px solid var(--primary);
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+
+.cv-item {
+  margin-bottom: 15px;
+}
+
+.cv-item h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.cv-meta {
+  font-weight: 600;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.cv-item ul {
+  padding-left: 20px;
+}
+
+.cv-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cv-skills span {
+  background: var(--primary);
+  color: var(--background);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* RESPONSIVE MODAL for MOBILE */
+@media screen and (max-width: 768px) {
+  .modal.show {
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  .pdf-modal iframe,
+  .pdf-modal object {
+    border-radius: 0;
+    padding-top: 60px;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 15px;
+    z-index: 2005;
+    background: var(--primary);
+    color: var(--background);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+}
+
+/* GENERAL RESPONSIVNESS */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 10px 15px;
+    width: 95%;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 120px;
+    gap: 30px;
+    width: 95%;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    margin: 15px auto;
+  }
+
+  .about-item,
+  .about-item.reverse {
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .about-image {
+    width: 100%;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .project-container::before {
+    left: 20px;
+  }
+
+  .project-item,
+  .project-item.reverse {
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 40px;
+    text-align: left;
+  }
+
+  .project-timeline {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 100%;
+  }
+
+  .project-timeline .dot {
+    left: 8px;
+  }
+
+  .contact-card {
+    padding: 40px 20px;
+  }
 }
