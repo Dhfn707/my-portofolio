@@ -2,22 +2,42 @@
   --background: #f8f4ee;
   --primary: #4e342e;
   --accent: #e67e22;
-  --dark-mode: #181412;
+  --card-bg: #ffffff;
+  --contact-bg: url("Assetss/back.png");
 }
+
+[data-theme="dark"] {
+  --background: #181412;
+  --primary: #e67e22;
+  --accent: #f8f4ee;
+  --card-bg: #251f1c;
+  --contact-bg: url("Assetss/backdark.png");
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: var(--background);
   color: var(--primary);
   font-family: sans-serif;
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+[data-theme="dark"] .btn-theme {
+  border-color: #f8f4ee;
+  color: #f8f4ee;
+}
+
+[data-theme="dark"] .btn-theme:hover {
+  background: #f8f4ee;
+  color: #181412;
 }
 
 /* NAVBAR */
@@ -75,20 +95,131 @@ body {
   color: var(--accent);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-theme {
+  background: none;
+  border: 2px solid var(--background);
+  color: var(--background);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-theme:hover {
+  background: var(--background);
+  color: var(--primary);
+}
+
+.btn-theme span {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-theme svg {
+  width: 20px;
+  height: 20px;
+}
+
+[data-theme="dark"] .sun {
+  display: flex !important;
+}
+
+[data-theme="dark"] .moon {
+  display: none !important;
+}
+
+.sun {
+  display: none;
+}
+
+.moon {
+  display: flex !important;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.17, 0.55, 0.55, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+}
+
+/* Muncul dari bawah */
+.reveal-up {
+  transform: translateY(50px);
+}
+.reveal-up.active {
+  transform: translateY(0);
+}
+
+/* Muncul dari kiri */
+.reveal-left {
+  transform: translateX(-50px);
+}
+.reveal-left.active {
+  transform: translateX(0);
+}
+
+/* Muncul dari kanan */
+.reveal-right {
+  transform: translateX(50px);
+}
+.reveal-right.active {
+  transform: translateX(0);
+}
+
+/* Staggered Delay for Exclusivity */
+.delay-1 {
+  transition-delay: 0.1s;
+}
+.delay-2 {
+  transition-delay: 0.2s;
+}
+.delay-3 {
+  transition-delay: 0.3s;
+}
+.delay-4 {
+  transition-delay: 0.4s;
+}
+.delay-5 {
+  transition-delay: 0.5s;
+}
+.delay-6 {
+  transition-delay: 0.6s;
+}
+
 .btn {
   background: var(--background);
   color: var(--primary);
-  border: none;
+  border: 2px solid var(--background);
   padding: 10px 24px;
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background: transparent;
+  color: var(--background);
 }
 
 .hero {
@@ -122,8 +253,15 @@ body {
 .btn-hero {
   background: var(--primary);
   color: var(--background);
+  border: 2px solid var(--primary);
   margin-top: 40px;
   padding: 14px 32px;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: transparent;
+  color: var(--primary);
 }
 
 .hero-image img {
@@ -183,14 +321,15 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #333;
+  color: var(--primary);
 }
 
 .about-text p {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 24px;
-  color: #555;
+  color: var(--primary);
+  opacity: 0.8;
 }
 
 .about-link {
@@ -430,7 +569,8 @@ body {
 .project-text .year {
   font-size: 18px;
   font-weight: 600;
-  color: #666;
+  color: var(--primary);
+  opacity: 0.7;
   margin-bottom: 24px;
 }
 
@@ -438,6 +578,7 @@ body {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 30px;
+  color: var(--primary);
 }
 
 .project-text h4 {
@@ -474,7 +615,7 @@ body {
   width: 90%;
   max-width: 650px;
   margin: 0 auto;
-  background: url("Assetss/back.png");
+  background: var(--contact-bg);
   background-size: cover;
   background-position: center;
   padding: 60px 40px;
@@ -546,7 +687,6 @@ footer {
   color: var(--background);
   padding: 20px 0;
   text-align: center;
-  margin-top: 100px;
 }
 
 footer p {
