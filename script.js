@@ -186,7 +186,7 @@ sliders.forEach((slider) => {
     if (autoSlideInterval) clearInterval(autoSlideInterval);
     autoSlideInterval = setInterval(() => {
       if (!isPaused) moveNext();
-    }, 2300);
+    }, 5000); // Change slide every 5 seconds
   }
 
   // Click Area Logic
