@@ -2,6 +2,7 @@
   --background: #f8f4ee;
   --primary: #4e342e;
   --accent: #e67e22;
+  --text-p: #4e342e;
   --card-bg: #ffffff;
   --contact-bg: url("Assetss/back.png");
 }
@@ -10,6 +11,7 @@
   --background: #181412;
   --primary: #e67e22;
   --accent: #f8f4ee;
+  --text-p: rgba(248, 244, 238, 0.8);
   --card-bg: #251f1c;
   --contact-bg: url("Assetss/backdark.png");
 }
@@ -248,6 +250,7 @@ body {
   line-height: 1.6;
   font-size: 20px;
   max-width: 600px;
+  color: var(--text-p);
 }
 
 .btn-hero {
@@ -328,8 +331,7 @@ body {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 24px;
-  color: var(--primary);
-  opacity: 0.8;
+  color: var(--text-p);
 }
 
 .about-link {
@@ -358,7 +360,7 @@ body {
 .skill-section {
   padding: 100px 0;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   margin: auto;
   text-align: center;
   position: relative;
@@ -382,7 +384,7 @@ body {
 .skill-timeline {
   position: relative;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1250px;
   margin: 0 auto 30px;
   height: 6px;
 }
@@ -419,7 +421,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  max-width: 1100px;
+  max-width: 1250px;
   margin: 0 auto;
 }
 
@@ -448,7 +450,7 @@ body {
 .skill-category li {
   font-size: 18px;
   line-height: 1.6;
-  color: #444;
+  color: var(--text-p);
   font-weight: 500;
 }
 
@@ -456,7 +458,7 @@ body {
 .projects-section {
   padding: 100px 0;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1335px;
   margin: auto;
   text-align: center;
 }
@@ -471,7 +473,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
   position: relative;
 }
 
@@ -503,16 +506,107 @@ body {
 
 .project-image {
   flex: 1;
+  width: 100%;
 }
 
-.img-content {
-  background: #4e342e; /* Frame color from image */
-  padding: 30px;
-  border-radius: 15px;
-  min-height: 400px;
+.slider-container {
+  background: var(--primary);
+  padding: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.3s ease;
+  perspective: 1200px;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-wrapper img,
+.slider-wrapper .img-content,
+.slider-wrapper .img-placeholder {
+  position: absolute;
+  width: auto;
+  max-width: 90%;
+  height: auto;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100px) rotateY(-20px) scale(0.8);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.slider-wrapper img.active,
+.slider-wrapper .img-content.active,
+.slider-wrapper .img-placeholder.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) rotateY(0) scale(1);
+  z-index: 2;
+}
+
+.slider-wrapper img.prev-slide,
+.slider-wrapper .img-content.prev-slide {
+  opacity: 0;
+  visibility: visible;
+  transform: translateX(-100px) rotateY(20px) scale(0.8);
+}
+
+/* Slider Controls */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+.slider-btn.next {
+  right: 10px;
+}
+
+.img-content {
+  background: var(--primary);
+  padding: 20px;
+  border-radius: 15px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: background 0.3s ease;
 }
 
 .img-content img {
@@ -578,7 +672,7 @@ body {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 30px;
-  color: var(--primary);
+  color: var(--text-p);
 }
 
 .project-text h4 {
@@ -594,6 +688,7 @@ body {
 .project-text li {
   font-size: 18px;
   line-height: 1.8;
+  color: var(--text-p);
 }
 
 /* CONTACT SECTION */
