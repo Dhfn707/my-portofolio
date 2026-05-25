@@ -46,6 +46,24 @@ window.addEventListener("click", (e) => {
 
 // Theme Toggle
 const themeToggle = document.getElementById("theme-toggle");
+const hamburger = document.getElementById("hamburger");
+const navLinks = document.querySelector(".nav-links");
+const navLinksItems = document.querySelectorAll(".nav-links a");
+
+// Hamburger Logic
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navLinks.classList.toggle("active");
+});
+
+// Close sidebar when clicking a link
+navLinksItems.forEach((link) => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("active");
+  });
+});
+
 const currentTheme = localStorage.getItem("theme");
 
 if (currentTheme) {
@@ -81,6 +99,29 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 window.addEventListener("load", reveal); // Jalankan saat page load pertama kali
 
+// Image Modal Logic
+const imgModal = document.getElementById("imageModal");
+const imgModalContent = document.getElementById("imgFull");
+const imgModalClose = document.querySelector(".image-modal-close");
+
+function openImageModal(src) {
+  imgModal.classList.add("active");
+  imgModalContent.src = src;
+  document.body.style.overflow = "hidden"; // Pause main scroll
+}
+
+imgModalClose.addEventListener("click", () => {
+  imgModal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
+
+window.addEventListener("click", (e) => {
+  if (e.target === imgModal) {
+    imgModal.classList.remove("active");
+    document.body.style.overflow = "auto";
+  }
+});
+
 // Multi-Slider Logic
 const sliders = document.querySelectorAll(".slider-container");
 
@@ -89,25 +130,43 @@ sliders.forEach((slider) => {
   const items = wrapper.querySelectorAll("img, .img-content, .img-placeholder");
   const prevBtn = slider.querySelector(".slider-btn.prev");
   const nextBtn = slider.querySelector(".slider-btn.next");
-  
+
   if (items.length <= 1) {
     if (prevBtn) prevBtn.style.display = "none";
     if (nextBtn) nextBtn.style.display = "none";
+
+    // Even if single item, ensure it's visible and allow modal zoom
+    items.forEach((item) => {
+      item.classList.add("active");
+      if (item.tagName === "IMG") {
+        item.addEventListener("click", () => openImageModal(item.src));
+      }
+    });
     return;
   }
 
   let currentIndex = 0;
   let autoSlideInterval;
+  let isPaused = false;
+
+  // Initialize first slide
+  updateSlider();
 
   function updateSlider(direction) {
     items.forEach((item, index) => {
       item.classList.remove("active", "prev-slide");
-      
+
       if (index === currentIndex) {
         item.classList.add("active");
-      } else if (direction === "next" && index === (currentIndex - 1 + items.length) % items.length) {
+      } else if (
+        direction === "next" &&
+        index === (currentIndex - 1 + items.length) % items.length
+      ) {
         item.classList.add("prev-slide");
-      } else if (direction === "prev" && index === (currentIndex + 1) % items.length) {
+      } else if (
+        direction === "prev" &&
+        index === (currentIndex + 1) % items.length
+      ) {
         item.classList.add("prev-slide");
       }
     });
@@ -123,23 +182,45 @@ sliders.forEach((slider) => {
     updateSlider("prev");
   }
 
-  // Auto slide - 1.3 detik
-  autoSlideInterval = setInterval(moveNext, 1300);
+  function startAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      if (!isPaused) moveNext();
+    }, 2300);
+  }
 
-  // Manual Controls
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      clearInterval(autoSlideInterval);
+  // Click Area Logic
+  const nextArea = slider.querySelector(".next-area");
+  const prevArea = slider.querySelector(".prev-area");
+  const pauseArea = slider.querySelector(".pause-area");
+
+  if (nextArea) {
+    nextArea.addEventListener("click", () => {
+      isPaused = false;
       moveNext();
-      autoSlideInterval = setInterval(moveNext, 1300);
     });
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener("click", () => {
-      clearInterval(autoSlideInterval);
+  if (prevArea) {
+    prevArea.addEventListener("click", () => {
+      isPaused = false;
       movePrev();
-      autoSlideInterval = setInterval(moveNext, 1300);
     });
   }
+
+  if (pauseArea) {
+    pauseArea.addEventListener("click", () => {
+      // Instead of Pause, now it opens MODAL ZOOM
+      const currentImg = items[currentIndex];
+      if (currentImg.tagName === "IMG") {
+        openImageModal(currentImg.src);
+      } else {
+        // Fallback for placeholders or div contents
+        const nestedImg = currentImg.querySelector("img");
+        if (nestedImg) openImageModal(nestedImg.src);
+      }
+    });
+  }
+
+  startAutoSlide();
 });

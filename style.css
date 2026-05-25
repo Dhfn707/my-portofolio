@@ -103,6 +103,45 @@ body {
   gap: 15px;
 }
 
+/* HAMBURGER MENU */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--background);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar Overlay */
+.nav-links.active {
+  right: 0;
+}
+
+/* Hamburger Animation */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
 .btn-theme {
   background: none;
   border: 2px solid var(--background);
@@ -511,51 +550,42 @@ body {
 
 .slider-container {
   background: var(--primary);
-  padding: 40px;
+  padding: 0; /* NO GAP at all */
   border-radius: 20px;
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 550px;
+  aspect-ratio: 8 / 8; /* Professional ratio for screenshots */
   display: flex;
   justify-content: center;
   align-items: center;
   transition: background 0.3s ease;
-  perspective: 1200px;
 }
 
 .slider-wrapper {
   position: relative;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.slider-wrapper img,
-.slider-wrapper .img-content,
-.slider-wrapper .img-placeholder {
+.slider-wrapper img {
   position: absolute;
-  width: auto;
-  max-width: 90%;
-  height: auto;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 12px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill the whole container edge-to-edge */
   opacity: 0;
   visibility: hidden;
-  transform: translateX(100px) rotateY(-20px) scale(0.8);
+  transform: scale(1.1); /* Zoom Effect */
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
-.slider-wrapper img.active,
-.slider-wrapper .img-content.active,
-.slider-wrapper .img-placeholder.active {
+.slider-wrapper img.active {
   opacity: 1;
   visibility: visible;
-  transform: translateX(0) rotateY(0) scale(1);
+  transform: scale(1);
   z-index: 2;
 }
 
@@ -597,23 +627,113 @@ body {
   right: 10px;
 }
 
+/* Invisible Click Areas */
+.slider-click-area {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.prev-area {
+  left: 0;
+  width: 30%;
+}
+
+.pause-area {
+  left: 30%;
+  width: 40%;
+}
+
+.next-area {
+  right: 0;
+  width: 30%;
+}
+
 .img-content {
   background: var(--primary);
-  padding: 20px;
   border-radius: 15px;
-  min-height: 500px;
+  min-height: 400px; /* Reduced for better proportion */
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 5px; /* Thin border as requested */
+  overflow: hidden;
   transition: background 0.3s ease;
 }
 
-.img-content img {
+.img-content img,
+.slider-wrapper img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain; /* Changed to contain so photo is NEVER cut off */
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  cursor: zoom-in;
+}
+
+/* Image Preview Modal */
+.image-modal {
+  display: none !important; /* Force hidden at start */
+  position: fixed;
+  z-index: 3000;
+  padding: 20px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+}
+
+.image-modal.active {
+  display: flex !important; /* Force show only when active */
+}
+
+.image-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 95%;
+  max-height: 90vh; /* Prevents being too big on desktop */
+  object-fit: contain;
+  border-radius: 10px;
+  animation: zoomImg 0.3s ease;
+}
+
+@keyframes zoomImg {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.image-modal-close:hover {
+  color: var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+  .image-modal-content {
+    width: 95%;
+  }
 }
 
 .img-content.placeholder {
@@ -787,6 +907,91 @@ footer {
 footer p {
   font-size: 18px;
   font-weight: 500;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 992px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding-top: 140px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .hero-text p {
+    margin: 24px auto 0;
+  }
+
+  /* Hamburger & Sidebar */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 24px;
+    color: var(--background);
+  }
+
+  .nav-actions .btn.cv-nav {
+    display: none; /* Sembunyikan tombol CV di bar utama saat mobile */
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project-item {
+    flex-direction: column !important;
+    gap: 40px;
+  }
+
+  .slider-container {
+    width: 100%;
+    height: 350px;
+  }
+
+  .img-content {
+    min-height: 350px;
+  }
+
+  .project-timeline {
+    display: none;
+  }
+
+  .project-container::before {
+    display: none;
+  }
+
+  .about-item {
+    flex-direction: column !important;
+  }
 }
 
 /* MODAL STYLES */
@@ -966,14 +1171,52 @@ footer p {
 }
 
 /* GENERAL RESPONSIVNESS */
+@media screen and (max-width: 992px) {
+  /* Hamburger & Sidebar Trigger */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: var(--primary);
+    display: flex !important; /* Force display since it was hidden */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .nav-links a {
+    font-size: 24px;
+    color: var(--background);
+  }
+
+  .nav-actions .btn.cv-nav {
+    display: none;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .navbar {
     padding: 10px 15px;
     width: 95%;
-  }
-
-  .nav-links {
-    display: none;
   }
 
   .hero {
@@ -1012,19 +1255,62 @@ footer p {
 
   .skill-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 60px;
+    padding-left: 60px; /* Increased padding */
+    position: relative;
+  }
+
+  /* Vertical Timeline for Skills & Projects */
+  .skill-grid::before {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: var(--primary);
+    z-index: 10;
+    display: block !important;
+  }
+
+  .skill-section .skill-timeline {
+    display: none;
+  }
+
+  .skill-category {
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    z-index: 11;
+  }
+
+  .skill-category::before {
+    content: "";
+    position: absolute;
+    left: -46px;
+    top: 5px;
+    width: 22px;
+    height: 22px;
+    background: var(--primary);
+    border-radius: 50%;
+    z-index: 12;
+    border: 4px solid var(--background);
   }
 
   .project-container::before {
-    left: 20px;
+    left: 25px;
+    transform: none;
+    z-index: 10;
+    display: block !important;
   }
 
   .project-item,
   .project-item.reverse {
     flex-direction: column;
-    gap: 20px;
-    padding-left: 40px;
+    gap: 30px;
+    padding-left: 60px;
     text-align: left;
+    z-index: 11;
   }
 
   .project-timeline {
@@ -1033,10 +1319,13 @@ footer p {
     top: 0;
     width: 40px;
     height: 100%;
+    display: flex !important;
+    z-index: 12;
   }
 
   .project-timeline .dot {
-    left: 8px;
+    left: 17px;
+    top: 5px;
   }
 
   .contact-card {

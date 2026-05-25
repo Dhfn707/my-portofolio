@@ -63,10 +63,21 @@
               </svg>
             </span>
           </button>
-          <button class="btn">Lihat CV</button>
+          <button class="btn cv-nav">Lihat CV</button>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </nav>
     </header>
+
+    <!-- Image Preview Modal -->
+    <div id="imageModal" class="image-modal">
+      <span class="image-modal-close">&times;</span>
+      <img class="image-modal-content" id="imgFull" />
+    </div>
 
     <main>
       <section class="hero" id="hero">
@@ -200,16 +211,37 @@
           <div class="project-item">
             <div class="project-image reveal reveal-left">
               <div class="slider-container custom-frame" data-slider-id="p1">
-                <button class="slider-btn prev">&lsaquo;</button>
                 <div class="slider-wrapper">
-                  <img src="Assetss/Project 1/Project-1-1.jpeg" alt="Manager Usaha 1" class="active" />
-                  <img src="Assetss/Project 1/Project-1-2.jpeg" alt="Manager Usaha 2" />
-                  <img src="Assetss/Project 1/Project-1-3.jpeg" alt="Manager Usaha 3" />
-                  <img src="Assetss/Project 1/Project-1-4.jpeg" alt="Manager Usaha 4" />
-                  <img src="Assetss/Project 1/Project-1-5.jpeg" alt="Manager Usaha 5" />
-                  <img src="Assetss/Project 1/Project-1-6.jpeg" alt="Manager Usaha 6" />
+                  <img
+                    src="Assetss/Project 1/Project-1-1.jpeg"
+                    alt="Manager Usaha 1"
+                    class="active"
+                  />
+                  <img
+                    src="Assetss/Project 1/Project-1-2.jpeg"
+                    alt="Manager Usaha 2"
+                  />
+                  <img
+                    src="Assetss/Project 1/Project-1-3.jpeg"
+                    alt="Manager Usaha 3"
+                  />
+                  <img
+                    src="Assetss/Project 1/Project-1-4.jpeg"
+                    alt="Manager Usaha 4"
+                  />
+                  <img
+                    src="Assetss/Project 1/Project-1-5.jpeg"
+                    alt="Manager Usaha 5"
+                  />
+                  <img
+                    src="Assetss/Project 1/Project-1-6.jpeg"
+                    alt="Manager Usaha 6"
+                  />
                 </div>
-                <button class="slider-btn next">&rsaquo;</button>
+                <!-- Invisible Click Areas for Control -->
+                <div class="slider-click-area prev-area"></div>
+                <div class="slider-click-area pause-area"></div>
+                <div class="slider-click-area next-area"></div>
               </div>
             </div>
             <div class="project-timeline">
@@ -265,9 +297,15 @@
               <div class="slider-container custom-frame" data-slider-id="p2">
                 <div class="slider-wrapper">
                   <div class="img-content placeholder active">
-                    <p style="color: var(--background)">Project 2 Images Here</p>
+                    <p style="color: var(--background)">
+                      Project 2 Images Here
+                    </p>
                   </div>
                 </div>
+                <!-- Invisible Click Areas for Control -->
+                <div class="slider-click-area prev-area"></div>
+                <div class="slider-click-area pause-area"></div>
+                <div class="slider-click-area next-area"></div>
               </div>
             </div>
           </div>
@@ -277,8 +315,16 @@
             <div class="project-image reveal reveal-left">
               <div class="slider-container custom-frame" data-slider-id="p3">
                 <div class="slider-wrapper">
-                  <img src="Assetss/Home.jpeg" alt="Aspirasi PT Dikari" class="active" />
+                  <img
+                    src="Assetss/Home.jpeg"
+                    alt="Aspirasi PT Dikari"
+                    class="active"
+                  />
                 </div>
+                <!-- Invisible Click Areas for Control -->
+                <div class="slider-click-area prev-area"></div>
+                <div class="slider-click-area pause-area"></div>
+                <div class="slider-click-area next-area"></div>
               </div>
             </div>
             <div class="project-timeline">
