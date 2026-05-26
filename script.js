@@ -56,13 +56,48 @@ hamburger.addEventListener("click", () => {
   navLinks.classList.toggle("active");
 });
 
-// Close sidebar when clicking a link
+// Close sidebar and smooth scroll when clicking a link
 navLinksItems.forEach((link) => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (e) => {
+    const targetId = link.getAttribute("href");
+    if (targetId.startsWith("#")) {
+      e.preventDefault();
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        const offset = navbar.offsetHeight;
+        const targetPosition = targetElement.offsetTop - offset;
+
+        window.scrollTo({
+          top: targetPosition,
+          behavior: "smooth",
+        });
+      }
+    }
     hamburger.classList.remove("active");
     navLinks.classList.remove("active");
   });
 });
+
+// For logo as well
+const logoLink = document.querySelector(".logo a");
+if (logoLink) {
+  logoLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
+
+// Clear hash on refresh to prevent jumping to specific sections
+if (window.location.hash) {
+  window.history.replaceState(
+    null,
+    null,
+    window.location.pathname + window.location.search,
+  );
+}
 
 const currentTheme = localStorage.getItem("theme");
 
