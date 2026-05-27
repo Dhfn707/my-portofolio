@@ -11,7 +11,12 @@
       <nav class="navbar" id="navbar">
         <div class="logo">
           <a href="#hero">
-            <img src="Assetss/pose-2 - Copy.jpg " oncontextmenu="return false;" class="profile" alt="" />
+            <img
+              src="Assetss/pose-2 - Copy.jpg "
+              oncontextmenu="return false;"
+              class="profile"
+              alt=""
+            />
           </a>
         </div>
         <div class="nav-links">
@@ -20,6 +25,7 @@
             <li><a href="#skill">Skill</a></li>
             <li><a href="#projects">Project</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#sertifikat">Sertifikat</a></li>
           </ul>
         </div>
         <div class="nav-actions">
@@ -79,6 +85,20 @@
       <img class="image-modal-content" id="imgFull" />
     </div>
 
+    <!-- Sertifikat PDF Modal -->
+    <div id="sertifModal" class="modal">
+      <div class="modal-content pdf-modal">
+        <span class="close-sertif">&times;</span>
+        <iframe
+          id="sertifIframe"
+          src=""
+          width="100%"
+          height="100%"
+          style="border: none; border-radius: 12px"
+        ></iframe>
+      </div>
+    </div>
+
     <main>
       <section class="hero" id="hero">
         <div class="hero-text reveal reveal-up">
@@ -99,7 +119,11 @@
         </div>
 
         <div class="hero-image reveal reveal-up delay-1">
-          <img src="Assetss/pose-1.jpg" oncontextmenu="return false;" alt="Muhammad Dhafin Arizki" />
+          <img
+            src="Assetss/pose-1.jpg"
+            oncontextmenu="return false;"
+            alt="Muhammad Dhafin Arizki"
+          />
         </div>
       </section>
       <!-- About Section -->
@@ -108,11 +132,16 @@
           <!-- Pendidikan -->
           <div class="about-item">
             <div class="about-image reveal reveal-left">
-              <img src="Assetss/Student.jpeg" oncontextmenu="return false;" alt="Pendidikan" />
+              <img
+                src="Assetss/Student.jpeg"
+                oncontextmenu="return false;"
+                alt="Pendidikan"
+              />
             </div>
             <div class="about-text reveal reveal-right">
               <h2>Pendidikan</h2>
               <h3>SMK NEGERI 1 CIBINONG</h3>
+              <p class="about-year">2023 - 2026</p>
               <p>
                 Mengambil jurusan Rekayasa perangkat lunak, mempelajari tentang
                 dasar dasar pemrograman lewat teknologi yang ada.
@@ -128,6 +157,7 @@
             <div class="about-text reveal reveal-left">
               <h2>Pengalaman Kerja</h2>
               <h3>PT DIKARI TATA UDARA INDONESIA</h3>
+              <p class="about-year">Okt 2025 - Feb 2026</p>
               <p>
                 Magang sebagai IT Staff, membuat website blog menggunakan React,
                 website aspirasi menggunakan Laravel, melakukan entri data untuk
@@ -139,7 +169,11 @@
               >
             </div>
             <div class="about-image reveal reveal-right">
-              <img src="Assetss/Intern.jpeg" oncontextmenu="return false;" alt="Pengalaman Kerja" />
+              <img
+                src="Assetss/Intern.jpeg"
+                oncontextmenu="return false;"
+                alt="Pengalaman Kerja"
+              />
             </div>
           </div>
         </div>
@@ -251,7 +285,7 @@
             </div>
             <div class="project-text reveal reveal-right">
               <h3>Manager Usaha</h3>
-              <p class="year">2024 - 2025</p>
+              <p class="year">Agu 2024 - Mei 2025</p>
               <p class="description">
                 Saya diproject sekolah ini berkontribusi pada desain aplikasi
                 website dan mobile, juga pembuatan aplikasi website pencatatan
@@ -273,7 +307,7 @@
           <div class="project-item reverse">
             <div class="project-text reveal reveal-left">
               <h3>ACDikari</h3>
-              <p class="year">OKT 2025 - FEB 2026</p>
+              <p class="year">Okt 2025 - Feb 2026</p>
               <p class="description">
                 Project ini berlatar belakang kebutuhan perusahaan, dikarenakan
                 perusahaan membutuhkan aplikasi website blog, saya sebagai
@@ -296,7 +330,6 @@
             <div class="project-image reveal reveal-right">
               <div class="slider-container custom-frame" data-slider-id="p2">
                 <div class="slider-wrapper">
-                  
                   <img
                     src="Assetss/Project 2/Project-2-1.jpeg"
                     alt="ACDikari 1"
@@ -326,7 +359,6 @@
                     src="Assetss/Project 2/Project-2-7.jpeg"
                     alt="ACDikari 7"
                   />
-                  
                 </div>
                 <!-- Invisible Click Areas for Control -->
                 <div class="slider-click-area prev-area"></div>
@@ -380,7 +412,7 @@
             </div>
             <div class="project-text reveal reveal-right">
               <h3>Aspirasi Perusahaan</h3>
-              <p class="year">2024 - 2025</p>
+              <p class="year">Okt 2025 - Feb 2026</p>
               <p class="description">
                 Project ini ditugaskan kepada saya dikarenakan aspirasi karyawan
                 masih belum terdokumentasi dengan baik hingga sulit untuk
@@ -398,45 +430,203 @@
           </div>
         </div>
       </section>
-      <section id="contact" class="contact-section">
-        <h1 class="reveal reveal-up">Contact</h1>
-        <div class="contact-card reveal reveal-up delay-1">
-          <form action="https://formsubmit.co/el/viyuhe" method="POST" />
-            <div class="form-group">
-              <label>Nama</label>
-              <input type="text" name="name" placeholder="Nama anda" required />
-            </div>
-            <div class="form-group">
-              <label>Gmail</label>
-              <input type="email" name="email" placeholder="Gmail anda" required />
-            </div>
-            <div class="form-group">
-              <label>Pesan</label>
-              <textarea name="message" placeholder="catatan" required></textarea>
-            </div>
-            <button type="submit" class="btn-kirim">Kirim</button>
-          </form>
-        </div>
-      </section>
     </main>
+
+    <section id="sertifikat" class="sertifikat-section">
+      <h1 class="reveal reveal-up">Sertifikat</h1>
+
+      <div class="sertifikat-grid reveal reveal-up delay-1">
+        <!-- Sertifikat 1: IDN Pelatihan -->
+        <div class="sertifikat-card">
+          <div class="sertifikat-img-wrapper">
+            <img
+              src="Assetss/Sertfikat/IDN Pelatihan.jpg"
+              oncontextmenu="return false;"
+              alt="Pelatihan IDN"
+              class="open-sertif-modal"
+              data-src="Assetss/Sertfikat/IDN Pelatihan.jpg"
+            />
+          </div>
+          <div class="sertifikat-content">
+            <div class="sertifikat-meta">
+              <span class="year">2023</span>
+              <span class="expiry">Masa Berlaku: Selamanya</span>
+            </div>
+            <h3>Pelatihan IT IDN</h3>
+            <p>
+              Program pelatihan intensif yang diselenggarakan oleh IDN untuk
+              meningkatkan kompetensi di bidang infrastruktur IT dan jaringan.
+            </p>
+            <button
+              class="btn-sertif open-sertif-modal"
+              data-src="Assetss/Sertfikat/IDN Pelatihan.jpg"
+            >
+              Lihat Sertifikat
+            </button>
+          </div>
+        </div>
+
+        <!-- Sertifikat 2: Sertifikat PKL -->
+        <div class="sertifikat-card">
+          <div class="sertifikat-img-wrapper">
+            <img
+              src="Assetss/Sertfikat/sertifikat pkl.jpeg"
+              oncontextmenu="return false;"
+              alt="Sertifikat PKL"
+              class="open-sertif-modal"
+              data-src="Assetss/Sertfikat/Sertifikat PKL.pdf"
+            />
+          </div>
+          <div class="sertifikat-content">
+            <div class="sertifikat-meta">
+              <span class="year">2026</span>
+              <span class="expiry">Masa Berlaku: Selamanya</span>
+            </div>
+            <h3>Sertifikat Praktik Kerja Lapangan (PKL)</h3>
+            <p>
+              Penghargaan atas penyelesaian program magang (PKL) di industri
+              sebagai IT Staff dengan performa yang memuaskan.
+            </p>
+            <button
+              class="btn-sertif open-sertif-modal"
+              data-src="Assetss/Sertfikat/Sertifikat PKL.pdf"
+            >
+              Buka PDF
+            </button>
+          </div>
+        </div>
+
+        <!-- Sertifikat 3: Clevio Game -->
+        <div class="sertifikat-card">
+          <div class="sertifikat-img-wrapper">
+            <img
+              src="Assetss/Sertfikat/Clevio Game.jpg"
+              oncontextmenu="return false;"
+              alt="Clevio Game Academy"
+              class="open-sertif-modal"
+              data-src="Assetss/Sertfikat/Clevio Game.jpg"
+            />
+          </div>
+          <div class="sertifikat-content">
+            <div class="sertifikat-meta">
+              <span class="year">2025</span>
+              <span class="expiry">Masa Berlaku: Selamanya</span>
+            </div>
+            <h3>Clevio Game Academy</h3>
+            <p>
+              Sertifikasi pengembangan logika pemrograman dan pembuatan game
+              interaktif menggunakan platform Clevio.
+            </p>
+            <button
+              class="btn-sertif open-sertif-modal"
+              data-src="Assetss/Sertfikat/Clevio Game.jpg"
+            >
+              Lihat Sertifikat
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="footer-content">
         <div class="footer-socials">
-          <a href="https://www.linkedin.com/in/muhammad-dhafin-a67887335" title="Muhammad Dhafin Arizki" target="_blank" aria-label="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          <a
+            href="https://www.linkedin.com/in/muhammad-dhafin-a67887335"
+            title="Muhammad Dhafin Arizki"
+            target="_blank"
+            aria-label="LinkedIn"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
           </a>
-          <a href="https://github.com/Dhfn707" title="Dhfn707" target="_blank" aria-label="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <a
+            href="https://github.com/Dhfn707"
+            title="Dhfn707"
+            target="_blank"
+            aria-label="GitHub"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
           </a>
-          <a href="https://www.instagram.com/dhfn707/" title="Dhfn707" target="_blank" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          <a
+            href="https://www.instagram.com/dhfn707/"
+            title="Dhfn707"
+            target="_blank"
+            aria-label="Instagram"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
           </a>
-          <a title="muhammaddhafinarizki@gmail.com" name="gmail" target="_blank" aria-label="Gmail">
-            <svg name="gmail" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <a
+            title="muhammaddhafinarizki@gmail.com"
+            name="gmail"
+            target="_blank"
+            aria-label="Gmail"
+          >
+            <svg
+              name="gmail"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
           </a>
         </div>
-        <p class="copyright">&copy; 2026 Muhammad Dhafin Arizki. All rights reserved.</p>
+        <p class="copyright">
+          &copy; 2026 Muhammad Dhafin Arizki. All rights reserved.
+        </p>
         <p class="footer-closing">Thank you for visiting my portfolio.</p>
       </div>
     </footer>

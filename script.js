@@ -134,6 +134,37 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 window.addEventListener("load", reveal); // Jalankan saat page load pertama kali
 
+// Sertifikat Modal Logic
+const sertifModal = document.getElementById("sertifModal");
+const sertifIframe = document.getElementById("sertifIframe");
+const closeSertif = document.querySelector(".close-sertif");
+const openSertifBtns = document.querySelectorAll(".open-sertif-modal");
+
+openSertifBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const source = btn.getAttribute("data-src");
+    sertifIframe.src = source;
+    sertifModal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+if (closeSertif) {
+  closeSertif.addEventListener("click", () => {
+    sertifModal.classList.remove("show");
+    sertifIframe.src = "";
+    document.body.style.overflow = "auto";
+  });
+}
+
+window.addEventListener("click", (e) => {
+  if (e.target === sertifModal) {
+    sertifModal.classList.remove("show");
+    sertifIframe.src = "";
+    document.body.style.overflow = "auto";
+  }
+});
+
 // Image Modal Logic
 const imgModal = document.getElementById("imageModal");
 const imgModalContent = document.getElementById("imgFull");
