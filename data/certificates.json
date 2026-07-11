@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Pelatihan IT IDN",
+    "year": "2023",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Program pelatihan intensif yang diselenggarakan oleh IDN untuk meningkatkan kompetensi di bidang infrastruktur IT dan jaringan.",
+    "image": "Assetss/Sertfikat/IDN Pelatihan.jpg",
+    "source": "Assetss/Sertfikat/IDN Pelatihan.jpg",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat Pelatihan IT IDN"
+  },
+  {
+    "title": "Sertifikat Praktik Kerja Lapangan (PKL)",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Penghargaan atas penyelesaian program magang (PKL) di industri sebagai IT Staff dengan performa yang memuaskan.",
+    "image": "Assetss/Sertfikat/sertifikat pkl.jpeg",
+    "source": "Assetss/Sertfikat/Sertifikat PKL.pdf",
+    "buttonLabel": "Buka PDF",
+    "ariaLabel": "Buka sertifikat PKL"
+  },
+  {
+    "title": "Clevio Game Academy",
+    "year": "2025",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikasi pengembangan logika pemrograman dan pembuatan game interaktif menggunakan platform Clevio.",
+    "image": "Assetss/Sertfikat/Clevio Game.jpeg",
+    "source": "Assetss/Sertfikat/Clevio Game.jpeg",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat Clevio Game Academy"
+  },
+  {
+    "title": "Sertifikat Data Analytics",
+    "year": "2025",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikasi pengembangan logika pemrograman dalam menganalisis data menggunakan Python dan Pandas.",
+    "image": "Assetss/Sertfikat/Sertifikat Data Analytics.jpeg",
+    "source": "Assetss/Sertfikat/Sertifikat Data Analytics.pdf",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat Data Analytics"
+  },
+  {
+    "title": "Sertifikat Kompetensi LSP",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikat kompetensi bidang pemrograman dan software development dari lembaga sertifikasi profesi.",
+    "image": "Assetss/Sertfikat/LSP.jpeg",
+    "source": "Assetss/Sertfikat/LSP.jpeg",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat LSP"
+  },
+  {
+    "title": "Nilai PKL",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Rekap nilai dan hasil evaluasi praktik kerja lapangan selama menjalankan program magang.",
+    "image": "Assetss/Sertfikat/Nilai PKL.jpeg",
+    "source": "Assetss/Sertfikat/Nilai PKL.jpeg",
+    "buttonLabel": "Lihat Detail",
+    "ariaLabel": "Buka nilai PKL"
+  },
+  {
+    "title": "Sertifikat UI/UX Design",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikat partisipasi dalam workshop desain antarmuka pengguna (UI) dan pengalaman pengguna (UX) untuk pengembangan aplikasi web dan mobile.",
+    "image": "Assetss/Sertfikat/sertif-uiux.png",
+    "source": "Assetss/Sertfikat/Sertifikat_Muhammad_Dhafin_Arizki.pdf",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat UI/UX Design"
+  },
+  {
+    "title": "Sertifikat UI/UX Design",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikat partisipasi dalam workshop desain antarmuka pengguna (UI) dan pengalaman pengguna (UX) untuk pengembangan aplikasi web dan mobile.",
+    "image": "Assetss/Sertfikat/sertif-kemnaker.png",
+    "source": "Assetss/Sertfikat/kemnaker.pdf",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat UI/UX Design"
+  },
+  {
+    "title": "Sertifikat UI/UX Design",
+    "year": "2026",
+    "expiry": "Masa Berlaku: Selamanya",
+    "description": "Sertifikat partisipasi dalam workshop desain antarmuka pengguna (UI) dan pengalaman pengguna (UX) untuk pengembangan aplikasi web dan mobile.",
+    "image": "Assetss/Sertfikat/sertif-uiux.png",
+    "source": "Assetss/Sertfikat/keterangan.pdf",
+    "buttonLabel": "Lihat Sertifikat",
+    "ariaLabel": "Buka sertifikat UI/UX Design"
+  }
+]

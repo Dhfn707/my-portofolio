@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Manager Usaha",
+    "duration": "Agu 2024 - Mei 2025",
+    "description": "Saya diproject sekolah ini berkontribusi pada desain aplikasi website dan mobile, juga pembuatan aplikasi website pencatatan data barang secara otomatis menggunakan barcode pada barang lalu di scan menggunakan scanner laser.",
+    "technologies": ["React", "Vite", "JavaScript", "Node.JS", "Figma"],
+    "images": [
+      { "src": "Assetss/Project 1/Project-1-1.jpeg", "alt": "Manager Usaha 1" },
+      { "src": "Assetss/Project 1/Project-1-2.jpeg", "alt": "Manager Usaha 2" },
+      { "src": "Assetss/Project 1/Project-1-3.jpeg", "alt": "Manager Usaha 3" },
+      { "src": "Assetss/Project 1/Project-1-4.jpeg", "alt": "Manager Usaha 4" },
+      { "src": "Assetss/Project 1/Project-1-5.jpeg", "alt": "Manager Usaha 5" },
+      { "src": "Assetss/Project 1/Project-1-6.jpeg", "alt": "Manager Usaha 6" }
+    ]
+  },
+  {
+    "title": "ACDikari",
+    "duration": "Okt 2025 - Feb 2026",
+    "description": "Project ini berlatar belakang kebutuhan perusahaan, dikarenakan perusahaan membutuhkan aplikasi website blog, saya sebagai peserta magang disana ditugaskan membuat aplikasi website blog ini.",
+    "technologies": ["React", "Vite", "JavaScript", "Node.JS"],
+    "images": [
+      { "src": "Assetss/Project 2/Project-2-1.jpeg", "alt": "ACDikari 1" },
+      { "src": "Assetss/Project 2/Project-2-2.jpeg", "alt": "ACDikari 2" },
+      { "src": "Assetss/Project 2/Project-2-3.gif", "alt": "ACDikari 3" },
+      { "src": "Assetss/Project 2/Project-2-4.jpeg", "alt": "ACDikari 4" },
+      { "src": "Assetss/Project 2/Project-2-5.jpeg", "alt": "ACDikari 5" },
+      { "src": "Assetss/Project 2/Project-2-6.jpeg", "alt": "ACDikari 6" },
+      { "src": "Assetss/Project 2/Project-2-7.jpeg", "alt": "ACDikari 7" }
+    ],
+    "reverse": true
+  },
+  {
+    "title": "Aspirasi Perusahaan",
+    "duration": "Okt 2025 - Feb 2026",
+    "description": "Project ini ditugaskan kepada saya dikarenakan aspirasi karyawan masih belum terdokumentasi dengan baik hingga sulit untuk ditelusuri kembali ketika perusahaan ingin mengintegrasikan aspirasi karyawan tersebut.",
+    "technologies": ["Laravel 8", "MySQL", "JavaScript", "CSS"],
+    "images": [
+      { "src": "Assetss/Project 3/Project-3-1.jpeg", "alt": "Aspirasi Perusahaan 1" },
+      { "src": "Assetss/Project 3/Project-3-2.jpeg", "alt": "Aspirasi Perusahaan 2" },
+      { "src": "Assetss/Project 3/Project-3-3.jpeg", "alt": "Aspirasi Perusahaan 3" },
+      { "src": "Assetss/Project 3/Project-3-4.jpeg", "alt": "Aspirasi Perusahaan 4" },
+      { "src": "Assetss/Project 3/Project-3-5.jpeg", "alt": "Aspirasi Perusahaan 5" },
+      { "src": "Assetss/Project 3/Project-3-6.jpeg", "alt": "Aspirasi Perusahaan 6" }
+    ]
+  }
+]

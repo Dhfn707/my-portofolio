@@ -134,19 +134,164 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 window.addEventListener("load", reveal); // Jalankan saat page load pertama kali
 
+const projectContainer = document.querySelector(".project-container");
+const certificateGrid = document.querySelector(".sertifikat-grid");
+
+function renderProjectImages(images) {
+  return images
+    .map(
+      (image, index) => `
+                  <img
+                    src="${image.src}"
+                    alt="${image.alt}"
+                    ${index === 0 ? 'class="active"' : ""}
+                    loading="lazy"
+                  />`,
+    )
+    .join("");
+}
+
+function renderProjectItem(project, index) {
+  const isReverse = project.reverse ?? index % 2 === 1;
+
+  return `
+          <div class="project-item${isReverse ? " reverse" : ""}">
+            ${isReverse ? "" : `
+            <div class="project-image reveal reveal-left">
+              <div class="slider-container custom-frame" data-slider-id="p${index + 1}">
+                <div class="slider-wrapper">
+${renderProjectImages(project.images)}
+                </div>
+                <div class="slider-click-area prev-area"></div>
+                <div class="slider-click-area pause-area"></div>
+                <div class="slider-click-area next-area"></div>
+              </div>
+            </div>`}
+            <div class="project-timeline">
+              <div class="line"></div>
+              <div class="dot"></div>
+              <div class="dot-bottom"></div>
+            </div>
+            <div class="project-text reveal ${isReverse ? "reveal-left" : "reveal-right"}">
+              <h3>${project.title}</h3>
+              <p class="year">${project.duration}</p>
+              <p class="description">${project.description}</p>
+              <h4>Teknologi</h4>
+              <ul>
+${project.technologies
+  .map((technology) => `                <li>${technology}</li>`)
+  .join("\n")}
+              </ul>
+            </div>
+            ${isReverse ? `
+            <div class="project-image reveal reveal-right">
+              <div class="slider-container custom-frame" data-slider-id="p${index + 1}">
+                <div class="slider-wrapper">
+${renderProjectImages(project.images)}
+                </div>
+                <div class="slider-click-area prev-area"></div>
+                <div class="slider-click-area pause-area"></div>
+                <div class="slider-click-area next-area"></div>
+              </div>
+            </div>` : ""}
+          </div>`;
+}
+
+function renderCertificateCard(certificate) {
+  return `
+        <div class="sertifikat-card open-sertif-modal" data-src="${certificate.source}" role="button" tabindex="0" aria-label="${certificate.ariaLabel}" onclick="window.openCertificateModal('${certificate.source}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); window.openCertificateModal('${certificate.source}');}">
+          <div class="sertifikat-img-wrapper">
+            <img
+              src="${certificate.image}"
+              oncontextmenu="return false;"
+              alt="${certificate.title}"
+              loading="lazy"
+            />
+          </div>
+          <div class="sertifikat-content">
+            <div class="sertifikat-meta">
+              <span class="year">${certificate.year}</span>
+              <span class="expiry">${certificate.expiry}</span>
+            </div>
+            <h3>${certificate.title}</h3>
+            <p>${certificate.description}</p>
+            <button class="btn-sertif" type="button">${certificate.buttonLabel}</button>
+          </div>
+        </div>`;
+}
+
+async function loadPortfolioData() {
+  try {
+    const [projectsResponse, certificatesResponse] = await Promise.all([
+      fetch("./data/projects.json"),
+      fetch("./data/certificates.json"),
+    ]);
+
+    if (projectsResponse.ok && certificatesResponse.ok) {
+      const [projectsData, certificatesData] = await Promise.all([
+        projectsResponse.json(),
+        certificatesResponse.json(),
+      ]);
+
+      if (projectContainer) {
+        projectContainer.innerHTML = projectsData.map(renderProjectItem).join("");
+      }
+
+      if (certificateGrid) {
+        certificateGrid.innerHTML = certificatesData.map(renderCertificateCard).join("");
+      }
+
+      initializeSliders();
+      window.dispatchEvent(new Event("load"));
+      return;
+    }
+  } catch (error) {
+    console.error("Failed to load portfolio data:", error);
+  }
+
+  throw new Error("Portfolio data could not be loaded from JSON files.");
+}
+
+loadPortfolioData().catch((error) => {
+  console.error("Failed to load portfolio data:", error);
+});
+
 // Sertifikat Modal Logic
 const sertifModal = document.getElementById("sertifModal");
 const sertifIframe = document.getElementById("sertifIframe");
 const closeSertif = document.querySelector(".close-sertif");
-const openSertifBtns = document.querySelectorAll(".open-sertif-modal");
 
-openSertifBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    const source = btn.getAttribute("data-src");
-    sertifIframe.src = source;
-    sertifModal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  });
+function openCertificateModal(source) {
+  if (!source) {
+    return;
+  }
+
+  sertifIframe.src = source;
+  sertifModal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+window.openCertificateModal = openCertificateModal;
+
+document.addEventListener("click", (event) => {
+  const certificateTrigger = event.target.closest(".open-sertif-modal");
+  if (!certificateTrigger) {
+    return;
+  }
+
+  openCertificateModal(certificateTrigger.getAttribute("data-src"));
+});
+
+document.addEventListener("keydown", (event) => {
+  const certificateTrigger = event.target.closest(".open-sertif-modal");
+  if (!certificateTrigger) {
+    return;
+  }
+
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openCertificateModal(certificateTrigger.getAttribute("data-src"));
+  }
 });
 
 if (closeSertif) {
@@ -189,104 +334,109 @@ window.addEventListener("click", (e) => {
 });
 
 // Multi-Slider Logic
-const sliders = document.querySelectorAll(".slider-container");
+function initializeSliders() {
+  const sliders = document.querySelectorAll(".slider-container");
 
-sliders.forEach((slider) => {
-  const wrapper = slider.querySelector(".slider-wrapper");
-  const items = wrapper.querySelectorAll("img, .img-content, .img-placeholder");
-  const prevBtn = slider.querySelector(".slider-btn.prev");
-  const nextBtn = slider.querySelector(".slider-btn.next");
+  sliders.forEach((slider) => {
+    const wrapper = slider.querySelector(".slider-wrapper");
+    if (!wrapper) {
+      return;
+    }
 
-  if (items.length <= 1) {
-    if (prevBtn) prevBtn.style.display = "none";
-    if (nextBtn) nextBtn.style.display = "none";
+    const items = wrapper.querySelectorAll("img, .img-content, .img-placeholder");
+    const prevBtn = slider.querySelector(".slider-btn.prev");
+    const nextBtn = slider.querySelector(".slider-btn.next");
 
-    // Even if single item, ensure it's visible and allow modal zoom
-    items.forEach((item) => {
-      item.classList.add("active");
-      if (item.tagName === "IMG") {
-        item.addEventListener("click", () => openImageModal(item.src));
+    slider.addEventListener("click", (event) => {
+      const clickedImage = event.target.closest("img");
+      if (clickedImage && wrapper.contains(clickedImage)) {
+        openImageModal(clickedImage.src);
       }
     });
-    return;
-  }
 
-  let currentIndex = 0;
-  let autoSlideInterval;
-  let isPaused = false;
+    if (items.length <= 1) {
+      if (prevBtn) prevBtn.style.display = "none";
+      if (nextBtn) nextBtn.style.display = "none";
 
-  // Initialize first slide
-  updateSlider();
-
-  function updateSlider(direction) {
-    items.forEach((item, index) => {
-      item.classList.remove("active", "prev-slide");
-
-      if (index === currentIndex) {
+      items.forEach((item) => {
         item.classList.add("active");
-      } else if (
-        direction === "next" &&
-        index === (currentIndex - 1 + items.length) % items.length
-      ) {
-        item.classList.add("prev-slide");
-      } else if (
-        direction === "prev" &&
-        index === (currentIndex + 1) % items.length
-      ) {
-        item.classList.add("prev-slide");
-      }
-    });
-  }
+      });
+      return;
+    }
 
-  function moveNext() {
-    currentIndex = (currentIndex + 1) % items.length;
-    updateSlider("next");
-  }
+    let currentIndex = 0;
+    let autoSlideInterval;
+    let isPaused = false;
 
-  function movePrev() {
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    updateSlider("prev");
-  }
+    updateSlider();
 
-  function startAutoSlide() {
-    if (autoSlideInterval) clearInterval(autoSlideInterval);
-    autoSlideInterval = setInterval(() => {
-      if (!isPaused) moveNext();
-    }, 5000); // Change slide every 5 seconds
-  }
+    function updateSlider(direction) {
+      items.forEach((item, index) => {
+        item.classList.remove("active", "prev-slide");
 
-  // Click Area Logic
-  const nextArea = slider.querySelector(".next-area");
-  const prevArea = slider.querySelector(".prev-area");
-  const pauseArea = slider.querySelector(".pause-area");
+        if (index === currentIndex) {
+          item.classList.add("active");
+        } else if (
+          direction === "next" &&
+          index === (currentIndex - 1 + items.length) % items.length
+        ) {
+          item.classList.add("prev-slide");
+        } else if (
+          direction === "prev" &&
+          index === (currentIndex + 1) % items.length
+        ) {
+          item.classList.add("prev-slide");
+        }
+      });
+    }
 
-  if (nextArea) {
-    nextArea.addEventListener("click", () => {
-      isPaused = false;
-      moveNext();
-    });
-  }
+    function moveNext() {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateSlider("next");
+    }
 
-  if (prevArea) {
-    prevArea.addEventListener("click", () => {
-      isPaused = false;
-      movePrev();
-    });
-  }
+    function movePrev() {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateSlider("prev");
+    }
 
-  if (pauseArea) {
-    pauseArea.addEventListener("click", () => {
-      // Instead of Pause, now it opens MODAL ZOOM
-      const currentImg = items[currentIndex];
-      if (currentImg.tagName === "IMG") {
-        openImageModal(currentImg.src);
-      } else {
-        // Fallback for placeholders or div contents
-        const nestedImg = currentImg.querySelector("img");
-        if (nestedImg) openImageModal(nestedImg.src);
-      }
-    });
-  }
+    function startAutoSlide() {
+      if (autoSlideInterval) clearInterval(autoSlideInterval);
+      autoSlideInterval = setInterval(() => {
+        if (!isPaused) moveNext();
+      }, 5000);
+    }
 
-  startAutoSlide();
-});
+    const nextArea = slider.querySelector(".next-area");
+    const prevArea = slider.querySelector(".prev-area");
+    const pauseArea = slider.querySelector(".pause-area");
+
+    if (nextArea) {
+      nextArea.addEventListener("click", () => {
+        isPaused = false;
+        moveNext();
+      });
+    }
+
+    if (prevArea) {
+      prevArea.addEventListener("click", () => {
+        isPaused = false;
+        movePrev();
+      });
+    }
+
+    if (pauseArea) {
+      pauseArea.addEventListener("click", () => {
+        const currentImg = items[currentIndex];
+        if (currentImg.tagName === "IMG") {
+          openImageModal(currentImg.src);
+        } else {
+          const nestedImg = currentImg.querySelector("img");
+          if (nestedImg) openImageModal(nestedImg.src);
+        }
+      });
+    }
+
+    startAutoSlide();
+  });
+}
